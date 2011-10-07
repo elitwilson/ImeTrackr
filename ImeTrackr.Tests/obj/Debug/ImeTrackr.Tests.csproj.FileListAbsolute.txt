@@ -1,0 +1,10 @@
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\ImeTrackr.Tests.dll.config
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\ImeTrackr.Tests.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\ImeTrackr.Tests.pdb
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\ImeTrackr.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\ImeTrackr.pdb
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\obj\Debug\ResolveAssemblyReference.cache
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\obj\Debug\ImeTrackr.Tests.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\obj\Debug\ImeTrackr.Tests.pdb
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\EntityFramework.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr.Tests\bin\Debug\EntityFramework.xml

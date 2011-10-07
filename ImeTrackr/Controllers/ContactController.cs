@@ -1,0 +1,113 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using ImeTrackr.Models;
+
+namespace ImeTrackr.Controllers
+{ 
+    public class ContactController : Controller
+    {
+        private ImeTrackrContext db = new ImeTrackrContext();
+
+        //
+        // GET: /Contact/
+
+        public ViewResult Index()
+        {
+            var contacts = db.Contacts.Include(c => c.Organization);
+            return View(contacts.ToList());
+        }
+
+        //
+        // GET: /Contact/Details/5
+
+        public ViewResult Details(int id)
+        {
+            Contact contact = db.Contacts.Find(id);
+            return View(contact);
+        }
+
+        //
+        // GET: /Contact/Create
+
+        public ActionResult Create()
+        {
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return View();
+        } 
+
+        //
+        // POST: /Contact/Create
+
+        [HttpPost]
+        public ActionResult Create(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return RedirectToAction("Index");  
+            }
+
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", contact.OrganizationId);
+            return View(contact);
+        }
+        
+        //
+        // GET: /Contact/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+            Contact contact = db.Contacts.Find(id);
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", contact.OrganizationId);
+            return View(contact);
+        }
+
+        //
+        // POST: /Contact/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(contact).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", contact.OrganizationId);
+            return View(contact);
+        }
+
+        //
+        // GET: /Contact/Delete/5
+ 
+        public ActionResult Delete(int id)
+        {
+            Contact contact = db.Contacts.Find(id);
+            return View(contact);
+        }
+
+        //
+        // POST: /Contact/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {            
+            Contact contact = db.Contacts.Find(id);
+            db.Contacts.Remove(contact);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}

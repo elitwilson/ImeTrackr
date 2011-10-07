@@ -1,0 +1,7 @@
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\ImeTrackr.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\ImeTrackr.pdb
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\EntityFramework.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\EntityFramework.xml
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ResolveAssemblyReference.cache
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ImeTrackr.dll
+c:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ImeTrackr.pdb

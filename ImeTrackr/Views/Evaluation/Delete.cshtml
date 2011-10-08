@@ -1,0 +1,48 @@
+﻿@model ImeTrackr.Models.Evaluation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Evaluation</legend>
+
+    <div class="display-label">Plaintiff</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Plaintiff.FirstName)
+    </div>
+
+    <div class="display-label">Organization</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">Notes</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Notes)
+    </div>
+
+    <div class="display-label">DayOne</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayOne)
+    </div>
+
+    <div class="display-label">CaseNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CaseNumber)
+    </div>
+
+    <div class="display-label">CaseName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CaseName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

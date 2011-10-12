@@ -75,6 +75,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Dates.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Evaluation.cs" />
     <Compile Include="Models\ImeTrackrContext.cs" />
@@ -205,7 +206,6 @@
   <ItemGroup>
     <Content Include="Views\Evaluation\Delete.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\PhoneCall\Index.cshtml" />
   </ItemGroup>
@@ -220,6 +220,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PhoneCall\Delete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

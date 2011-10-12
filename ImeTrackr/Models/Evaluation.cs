@@ -12,7 +12,11 @@ namespace ImeTrackr.Models
         public int? OrganizationId { get; set; }
         
         public string       Notes { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyy}")]
         public DateTime?    DayOne { get; set; }
+
+        public DateTime?    DateTwo { get; set; }
         public string       CaseNumber { get; set; }
         public string       CaseName { get; set; }
 

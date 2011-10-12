@@ -36,7 +36,7 @@ namespace ImeTrackr.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FirstName");
+
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
             return View();
         } 
@@ -49,12 +49,15 @@ namespace ImeTrackr.Controllers
         {
             if (ModelState.IsValid)
             {
+                Plaintiff plaintiff = new Plaintiff();
+                evaluation.Plaintiff = plaintiff;
+                db.Plaintiffs.Add(plaintiff);
+                
                 db.Evaluations.Add(evaluation);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FirstName", evaluation.PlaintiffId);
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", evaluation.OrganizationId);
             return View(evaluation);
         }

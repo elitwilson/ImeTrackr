@@ -12,6 +12,8 @@ namespace ImeTrackr.Models
         
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyy}")]
         public DateTime? DOB { get; set; }
         public int SSN { get; set; }
 

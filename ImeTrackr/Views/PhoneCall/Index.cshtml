@@ -12,10 +12,10 @@
 <table>
     <tr>
         <th>
-            Contact
+            Date
         </th>
         <th>
-            Date
+            Contact
         </th>
         <th>
             Message
@@ -26,10 +26,11 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.FullName)
+            @Html.DisplayFor(modelItem => item.Date)
+            
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
+            @Html.DisplayFor(modelItem => item.Contact.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Message)

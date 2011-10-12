@@ -10,7 +10,8 @@ namespace ImeTrackr.Models
     {
         public int ContactId { get; set; }
 
-        public DateTime? Date { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyy}")]
+        public DateTime? Date { get; set; }        
         
         public string Message { get; set; }
 

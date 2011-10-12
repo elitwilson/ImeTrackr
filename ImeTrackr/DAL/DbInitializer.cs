@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using ImeTrackr.Models;
+using ImeTrackr.Models; 
 
 namespace ImeTrackr.DAL
 {
-    public class DbInitializer : DropCreateDatabaseAlways<ImeTrackrContext>
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<ImeTrackrContext>
     {
         protected override void Seed(ImeTrackrContext context)
         {
@@ -31,7 +31,7 @@ namespace ImeTrackr.DAL
             };
             contacts.ForEach(c => context.Contacts.Add(c));
             context.SaveChanges();
-
+            
             var plaintiffs = new List<Plaintiff>
             {
                 new Plaintiff { FirstName="Faker", LastName="McFakey", ContactId=1 },

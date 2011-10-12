@@ -13,12 +13,11 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Evaluation</legend>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.PlaintiffId, "Plaintiff")
+            @Html.LabelFor(model => model.Plaintiff.FirstName)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("PlaintiffId", String.Empty)
+            @Html.EditorFor(model => model.Plaintiff.FirstName)
             @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
 

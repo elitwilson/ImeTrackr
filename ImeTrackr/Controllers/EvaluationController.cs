@@ -50,7 +50,7 @@ namespace ImeTrackr.Controllers
             if (ModelState.IsValid)
             {
                 Plaintiff plaintiff = new Plaintiff();
-                evaluation.Plaintiff = plaintiff;
+                plaintiff = evaluation.Plaintiff;
                 db.Plaintiffs.Add(plaintiff);
                 
                 db.Evaluations.Add(evaluation);

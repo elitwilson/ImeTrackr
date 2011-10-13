@@ -10,6 +10,7 @@ namespace ImeTrackr.Models
     {
         public int? PlaintiffId { get; set; }
         public int? OrganizationId { get; set; }
+        public int? ContactId { get; set; }
         
         public string       Notes { get; set; }
 
@@ -19,6 +20,7 @@ namespace ImeTrackr.Models
         public DateTime?    DateTwo { get; set; }
         public string       CaseNumber { get; set; }
         public string       CaseName { get; set; }
+        public bool         IsComplete { get; set; }
 
         public virtual Plaintiff Plaintiff { get; set; }
         public virtual Organization Organization { get; set; }

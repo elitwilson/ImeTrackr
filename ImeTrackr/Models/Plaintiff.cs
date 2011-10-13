@@ -8,7 +8,7 @@ namespace ImeTrackr.Models
 {
     public class Plaintiff : Entity
     {
-        public int ContactId { get; set; }
+        public int? ContactId { get; set; }
         
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -18,6 +18,7 @@ namespace ImeTrackr.Models
         public int SSN { get; set; }
 
         public ICollection<Evaluation> Evaluations { get; set; }
+        public virtual Contact Contact { get; set; }
         
         public string FullName
         {

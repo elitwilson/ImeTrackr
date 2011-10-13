@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <appHostConfig path="ImeTrackr" />
+  <contentPath path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\Package\PackageTmp\App_Data" setAclResourceType="Directory" setAclAccess="Write" />
+  <dbFullSql path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\AutoScripts\ApplicationServices-Deployment_SchemaOnly.sql" Transacted="True" />
+  <dbFullSql path="C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\AutoScripts\ImeTrackrContext-Deployment_SchemaOnly.sql" Transacted="True" />
+</sitemanifest>

@@ -49,16 +49,15 @@ namespace ImeTrackr.Controllers
         {
             if (ModelState.IsValid)
             {
-                Plaintiff plaintiff = new Plaintiff();
-                plaintiff = evaluation.Plaintiff;
-                db.Plaintiffs.Add(plaintiff);
-                
+
+                evaluation.IsComplete = false;
                 db.Evaluations.Add(evaluation);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
-
+            
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", evaluation.OrganizationId);
+            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", evaluation.ContactId);
             return View(evaluation);
         }
         

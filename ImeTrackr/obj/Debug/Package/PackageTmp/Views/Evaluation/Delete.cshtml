@@ -20,6 +20,16 @@
         @Html.DisplayFor(model => model.Organization.Name)
     </div>
 
+    <div class="display-label">Contact</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.FirstName)
+    </div>
+
+    <div class="display-label">Tech</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tech.FirstName)
+    </div>
+
     <div class="display-label">Notes</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.Notes)
@@ -30,6 +40,11 @@
         @Html.DisplayFor(model => model.DayOne)
     </div>
 
+    <div class="display-label">DayTwo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayTwo)
+    </div>
+
     <div class="display-label">CaseNumber</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CaseNumber)
@@ -38,6 +53,11 @@
     <div class="display-label">CaseName</div>
     <div class="display-field">
         @Html.DisplayFor(model => model.CaseName)
+    </div>
+
+    <div class="display-label">IsComplete</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsComplete)
     </div>
 </fieldset>
 @using (Html.BeginForm()) {

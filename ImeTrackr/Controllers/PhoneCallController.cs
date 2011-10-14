@@ -18,7 +18,8 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Index()
         {
-            var phonecalls = db.PhoneCalls.Include(p => p.Contact).OrderBy(p => p.Date);
+            var phonecalls = db.PhoneCalls.Include(p => p.Contact)
+                .OrderBy(p => p.Date);
             return View(phonecalls.ToList());
         }
 

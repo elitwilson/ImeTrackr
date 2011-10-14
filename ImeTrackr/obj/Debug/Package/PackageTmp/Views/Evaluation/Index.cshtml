@@ -15,20 +15,24 @@
             Plaintiff
         </th>
         <th>
-            Organization
+            Contact
         </th>
         <th>
             Notes
         </th>
         <th>
-            DayOne
+            Day One
         </th>
         <th>
-            CaseNumber
+            Day Two
         </th>
         <th>
-            CaseName
+            Case Number
         </th>
+        <th>
+            Case Name
+        </th>
+        <th>Complete?</th>
         <th></th>
     </tr>
 
@@ -38,7 +42,7 @@
             @Html.DisplayFor(modelItem => item.Plaintiff.FullName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Organization.Name)
+            @Html.DisplayFor(modelItem => item.Contact.FullName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
@@ -47,10 +51,16 @@
             @Html.DisplayFor(modelItem => item.DayOne)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.DayTwo)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.CaseNumber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CaseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsComplete)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

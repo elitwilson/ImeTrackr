@@ -15,6 +15,7 @@ namespace ImeTrackr.Models
         public DateTime? Date { get; set; }        
         
         public string Message { get; set; }
+        public bool IsComplete { get; set; }
 
         public virtual Contact Contact { get; set; }
         public virtual Plaintiff Plaintiff { get; set; }

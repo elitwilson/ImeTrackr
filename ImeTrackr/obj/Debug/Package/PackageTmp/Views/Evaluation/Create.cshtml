@@ -57,11 +57,11 @@
             @Html.ValidationMessageFor(model => model.CaseName)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrganizationId, "Organization")
+            @Html.LabelFor(model => model.OrganizationId, "Contact")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("OrganizationId", String.Empty)
-            @Html.ValidationMessageFor(model => model.OrganizationId)
+            @Html.DropDownList("ContactId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ContactId)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.DayOne)
@@ -70,7 +70,20 @@
             @Html.EditorFor(model => model.DayOne)
             @Html.ValidationMessageFor(model => model.DayOne)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DayTwo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DayTwo)
+            @Html.ValidationMessageFor(model => model.DayTwo)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TechId, "Technician")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TechId", String.Empty)
+            @Html.ValidationMessageFor(model => model.TechId)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Notes)
         </div>

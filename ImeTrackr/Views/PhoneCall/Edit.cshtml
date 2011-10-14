@@ -13,7 +13,12 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>PhoneCall</legend>
-
+        <div class="editor-label">
+        Completed?
+        </div>
+        <div class="editor-field">
+            @Html.CheckBoxFor(model => model.IsComplete)
+        </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.ContactId, "Contact")
         </div>

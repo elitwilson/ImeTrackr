@@ -13,6 +13,8 @@ namespace ImeTrackr.Models
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string JobTitle { get; set; }
+        public string Email { get; set; }
+        public string Notes { get; set; }
 
         public ICollection<Plaintiff> Plaintiffs { get; set; }
         public ICollection<PhoneCall> PhoneCalls { get; set; }

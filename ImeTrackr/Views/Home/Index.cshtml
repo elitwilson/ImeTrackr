@@ -1,8 +1,43 @@
-﻿@{
+﻿@model IEnumerable<ImeTrackr.Models.Evaluation>
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <h2>@ViewBag.Message</h2>
-<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>
+<table>
+    <tr>
+        <th>Plaintiff</th>
+        <th>Contact</th>
+        <th>Notes</th>
+        <th>Day One</th>
+        <th>Day Two</th>
+        <th>Case Number</th>
+        <th>Case Name</th>
+    </tr>
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plaintiff.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayOne)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DayTwo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CaseName)
+        </td>
+    </tr>
+}
+</table>

@@ -18,7 +18,7 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Index()
         {
-            return View(db.Organizations.ToList());
+            return View(db.Organizations.ToList().OrderBy(e => e.Name));
         }
 
         //

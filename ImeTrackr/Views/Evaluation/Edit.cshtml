@@ -13,39 +13,34 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>Evaluation</legend>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.PlaintiffId, "Plaintiff")
+            @Html.LabelFor(model => model.Plaintiff.FirstName)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("PlaintiffId", String.Empty)
+            @Html.EditorFor(model => model.Plaintiff.FirstName)
             @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrganizationId, "Organization")
+            @Html.LabelFor(model => model.Plaintiff.LastName)
         </div>
         <div class="editor-field">
-            @Html.DropDownList("OrganizationId", String.Empty)
-            @Html.ValidationMessageFor(model => model.OrganizationId)
+            @Html.EditorFor(model => model.Plaintiff.LastName)
+            @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.Notes)
+            @Html.LabelFor(model => model.Plaintiff.DOB)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Notes)
-            @Html.ValidationMessageFor(model => model.Notes)
+            @Html.EditorFor(model => model.Plaintiff.DOB)
+            @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
-
         <div class="editor-label">
-            @Html.LabelFor(model => model.DayOne)
+            @Html.LabelFor(model => model.Plaintiff.SSN)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DayOne)
-            @Html.ValidationMessageFor(model => model.DayOne)
+            @Html.EditorFor(model => model.Plaintiff.SSN)
+            @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.CaseNumber)
         </div>
@@ -61,7 +56,41 @@
             @Html.EditorFor(model => model.CaseName)
             @Html.ValidationMessageFor(model => model.CaseName)
         </div>
-
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrganizationId, "Contact")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ContactId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ContactId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DayOne)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DayOne)
+            @Html.ValidationMessageFor(model => model.DayOne)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DayTwo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DayTwo)
+            @Html.ValidationMessageFor(model => model.DayTwo)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TechId, "Technician")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("TechId", String.Empty)
+            @Html.ValidationMessageFor(model => model.TechId)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Notes)
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
         @Html.HiddenFor(model => model.Id)
 
         <p>

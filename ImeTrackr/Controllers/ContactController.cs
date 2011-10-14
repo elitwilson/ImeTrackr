@@ -18,7 +18,7 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Index()
         {
-            var contacts = db.Contacts.Include(c => c.Organization);
+            var contacts = db.Contacts.Include(c => c.Organization).OrderBy(c => c.LastName);
             return View(contacts.ToList());
         }
 
@@ -88,6 +88,7 @@ namespace ImeTrackr.Controllers
  
         public ActionResult Delete(int id)
         {
+            ViewBag.Message = "Are you sure you want to delete?"; 
             Contact contact = db.Contacts.Find(id);
             return View(contact);
         }
@@ -97,11 +98,21 @@ namespace ImeTrackr.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
-            Contact contact = db.Contacts.Find(id);
-            db.Contacts.Remove(contact);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+        {
+            
+            try
+            {
+                Contact contact = db.Contacts.Find(id);
+                db.Contacts.Remove(contact);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                Contact contact = db.Contacts.Find(id);
+                ViewBag.Message = "Cannot Delete";
+                return View(contact);
+            }
         }
 
         protected override void Dispose(bool disposing)

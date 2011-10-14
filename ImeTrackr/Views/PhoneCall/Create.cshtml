@@ -21,6 +21,13 @@
             @Html.DropDownList("ContactId", String.Empty)
             @Html.ValidationMessageFor(model => model.ContactId)
         </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PlaintiffId, "Plaintiff")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PlaintiffId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PlaintiffId)
+        </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Date)

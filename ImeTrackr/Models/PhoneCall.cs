@@ -9,6 +9,7 @@ namespace ImeTrackr.Models
     public class PhoneCall : Entity
     {
         public int ContactId { get; set; }
+        public int? PlaintiffId { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyy}")]
         public DateTime? Date { get; set; }        
@@ -16,5 +17,6 @@ namespace ImeTrackr.Models
         public string Message { get; set; }
 
         public virtual Contact Contact { get; set; }
+        public virtual Plaintiff Plaintiff { get; set; }
     }
 }

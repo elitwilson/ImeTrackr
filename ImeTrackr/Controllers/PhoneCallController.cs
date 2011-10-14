@@ -18,7 +18,7 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Index()
         {
-            var phonecalls = db.PhoneCalls.Include(p => p.Contact);
+            var phonecalls = db.PhoneCalls.Include(p => p.Contact).OrderBy(p => p.Date);
             return View(phonecalls.ToList());
         }
 
@@ -36,7 +36,8 @@ namespace ImeTrackr.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName");
+            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
+            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName");
             return View();
         } 
 
@@ -53,7 +54,8 @@ namespace ImeTrackr.Controllers
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", phonecall.ContactId);
+            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", phonecall.PlaintiffId);
+            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", phonecall.ContactId);
             return View(phonecall);
         }
         

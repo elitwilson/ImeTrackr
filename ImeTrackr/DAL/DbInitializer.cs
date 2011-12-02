@@ -19,6 +19,13 @@ namespace ImeTrackr.DAL
             organizations.ForEach(o => context.Organizations.Add(o));
             context.SaveChanges();
 
+            var contacts = new List<Contact>
+            {
+                new Contact { FirstName="Unknown", LastName="Unknown" }
+            };
+            contacts.ForEach(c => context.Contacts.Add(c));
+            context.SaveChanges();
+
             //var contacts = new List<Contact>
             //{
             //    new Contact { FirstName="Bill", LastName="Bob", PhoneNumber="235-555-5555",

@@ -15,7 +15,6 @@ namespace ImeTrackr.Controllers
 
         //
         // GET: /Evaluation/
-
         public ViewResult Index()
         {
             var evaluations = db.Evaluations.Include(e => e.Plaintiff)
@@ -113,7 +112,7 @@ namespace ImeTrackr.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             Evaluation evaluation = db.Evaluations.Find(id);
             db.Evaluations.Remove(evaluation);
             db.SaveChanges();

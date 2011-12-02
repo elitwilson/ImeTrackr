@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<ImeTrackr.Models.PhoneCall>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Phone Log";
 }
 
-<h2>Index</h2>
+<h2>Phone Log
+</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,16 +13,19 @@
 <table>
     <tr>
         <th>
-            Date
+            @Html.ActionLink("Date", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
-            Contact
+            @Html.ActionLink("Plaintiff", "Index", new { sortOrder = ViewBag.PlaintiffSortParm })
+        </th>
+        <th>
+            @Html.ActionLink("Contact", "Index", new { sortOrder = ViewBag.ContactSortParm })
         </th>
         <th>
             Message
         </th>
         <th>
-            Completed?
+            Needs F/U?
         </th>
     </tr>
 
@@ -32,7 +36,10 @@
             
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.FullName)
+            @Html.DisplayFor(modelItem => item.Plaintiff.LastFirst)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact.LastFirst)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Message)

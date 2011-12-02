@@ -14,9 +14,14 @@ namespace ImeTrackr.Models
 
         public virtual ICollection<Evaluation> Evaluations { get; set; }
 
-        public string FullName 
+        public string FullName
         {
             get { return FirstName + " " + LastName; }
+        }
+
+        public string LastFirst
+        {
+            get { return LastName + ", " + FirstName; }
         }
     }
 }

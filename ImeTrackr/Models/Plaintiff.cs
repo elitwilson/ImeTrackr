@@ -19,10 +19,15 @@ namespace ImeTrackr.Models
 
         public ICollection<Evaluation> Evaluations { get; set; }
         public virtual Contact Contact { get; set; }
-        
+
         public string FullName
         {
             get { return FirstName + " " + LastName; }
+        }
+
+        public string LastFirst
+        {
+            get { return LastName + ", " + FirstName; }
         }
     }
 }

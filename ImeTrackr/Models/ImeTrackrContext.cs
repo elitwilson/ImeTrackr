@@ -11,8 +11,6 @@ namespace ImeTrackr.Models
 {
     public class ImeTrackrContext : DbContext
     {
-
-
         public DbSet<Evaluation> Evaluations { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Plaintiff> Plaintiffs { get; set; }

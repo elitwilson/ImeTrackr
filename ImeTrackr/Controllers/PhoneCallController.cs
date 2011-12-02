@@ -16,11 +16,55 @@ namespace ImeTrackr.Controllers
         //
         // GET: /PhoneCall/
 
-        public ViewResult Index()
+        //public ViewResult Index()
+        //{
+        //    var phonecalls = db.PhoneCalls.Include(p => p.Contact)
+        //        .OrderBy(p => p.Date);
+        //    return View(phonecalls.ToList());
+        //}
+
+        public ViewResult Index(string sortOrder)
         {
-            var phonecalls = db.PhoneCalls.Include(p => p.Contact)
-                .OrderBy(p => p.Date);
-            return View(phonecalls.ToList());
+            ViewBag.PlaintiffSortParm = sortOrder == "Plaintiff" ? "Plaintiff desc" : "Plaintiff";
+            ViewBag.ContactSortParm = sortOrder == "Contact" ? "Contact desc" : "Contact";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
+            
+            var phoneCalls = from p in db.PhoneCalls
+                             select p;
+
+            switch (sortOrder)
+            {
+                case "Date":
+                    phoneCalls = phoneCalls.OrderBy(p => p.Date);
+                    break;
+
+                case "Date desc":
+                    phoneCalls = phoneCalls.OrderByDescending(p => p.Date);
+                    break;
+
+                case "Plaintiff":
+                    phoneCalls = phoneCalls.OrderBy(p => p.Plaintiff.LastName);
+                    break;
+
+                case "Plaintiff desc":
+                    phoneCalls = phoneCalls.OrderByDescending(p => p.Plaintiff.LastName);
+                    break;
+                
+                case "Contact":
+                    phoneCalls = phoneCalls.OrderBy(p => p.Plaintiff.LastName);
+                    break;
+
+                case "Contact desc":
+                    phoneCalls = phoneCalls.OrderByDescending(p => p.Plaintiff.LastName);
+                    break;
+
+                default:
+                    var phonecalls = db.PhoneCalls.Include(p => p.Contact)
+                        .OrderBy(p => p.Date);
+                    break;
+            }
+
+            return View(phoneCalls.ToList());
         }
 
         //

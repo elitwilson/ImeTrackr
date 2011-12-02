@@ -115,6 +115,7 @@
     <Compile Include="Controllers\TechController.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="DAL\DbRepository.cs" />
+    <Compile Include="DAL\PhoneCallRepo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -130,6 +131,7 @@
     <Compile Include="Models\Tech.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
+    <Compile Include="ViewModels\PhoneCallViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ImeTrackrDb.sdf" />

@@ -12,11 +12,11 @@
     <tr>
         <th>Plaintiff</th>
         <th>Contact</th>
-        <th>Notes</th>
         <th>Day One</th>
         <th>Day Two</th>
         <th>Case Number</th>
         <th>Case Name</th>
+        <th>Notes</th>
     </tr>
     @foreach (var item in Model) {
     <tr>
@@ -25,9 +25,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Contact.FullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DayOne)
@@ -40,6 +37,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CaseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes)
         </td>
     </tr>
 }

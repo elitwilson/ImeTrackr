@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ImeTrackr.Models.Organization>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Organizations";
 }
 
-<h2>Index</h2>
+<h2>Organizations</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -38,7 +38,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.ActionLink(item.Name, "Details", new { id = item.Id })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StAddress)
@@ -60,7 +60,6 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>

@@ -131,6 +131,7 @@
     <Compile Include="Models\Tech.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EvaluationViewModel.cs" />
+    <Compile Include="ViewModels\OrganizationDetailsVM.cs" />
     <Compile Include="ViewModels\PhoneCallViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

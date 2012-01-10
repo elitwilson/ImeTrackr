@@ -188,6 +188,7 @@ legend {
 
 textarea {
     min-height: 75px;
+    min-width: 200px;
 }
 
 input[type="text"], 
@@ -204,6 +205,7 @@ select {
     padding: 2px;
     font-size: 1.2em;
     color: #444;
+    width: 206px;
 }
 
 input[type="submit"] {

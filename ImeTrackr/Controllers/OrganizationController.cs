@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ImeTrackr.Models;
+using ImeTrackr.ViewModels;
 
 namespace ImeTrackr.Controllers
 { 
@@ -26,8 +27,17 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Details(int id)
         {
-            Organization organization = db.Organizations.Find(id);
-            return View(organization);
+            //Organization organization = db.Organizations.Find(id);
+            //return View(organization);
+
+            var viewModel = new OrganizationDetailsVM();
+            viewModel.Organization = db.Organizations.Find(id);
+
+            viewModel.Contacts = db.Contacts
+                .Include(c => c.Organization)
+                .Where(c => c.OrganizationId == id);
+
+            return View(viewModel);
         }
 
         //

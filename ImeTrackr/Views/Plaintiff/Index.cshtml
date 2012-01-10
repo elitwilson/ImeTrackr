@@ -1,19 +1,16 @@
 ﻿@model IEnumerable<ImeTrackr.Models.Plaintiff>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Plaintiffs";
 }
 
-<h2>Index</h2>
+<h2>Plaintiffs</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table>
     <tr>
-        <th>
-            Contact
-        </th>
         <th>
             FirstName
         </th>
@@ -35,7 +32,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Contact.FirstName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)

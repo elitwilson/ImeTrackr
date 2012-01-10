@@ -11,7 +11,7 @@ namespace ImeTrackr.Models
         public string StAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-        public int Zip { get; set; }
+        public int    Zip { get; set; }
         public string MainPhone { get; set; }
         public string Fax { get; set; }
         

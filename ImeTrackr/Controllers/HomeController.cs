@@ -17,15 +17,14 @@ namespace ImeTrackr.Controllers
         public ActionResult Index()
         {
             var evaluations = db.Evaluations.Include(e => e.Plaintiff)
-                .Include(e => e.Organization)
+                .Include(e => e.Contact)
                 .Where(e => e.IsComplete == false)
                 .OrderBy(e => e.DayTwo);
             var repo = new DbRepository();
 
             //Call to daily backup method
-            repo.AutoBackupDB();
+            //repo.AutoBackupDB();
 
-            string root = 
             ViewBag.Message = "Currently Open Evaluations";
 
             return View(evaluations.ToList());

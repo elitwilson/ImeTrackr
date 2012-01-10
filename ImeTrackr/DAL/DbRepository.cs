@@ -12,13 +12,13 @@ namespace ImeTrackr.DAL
         public void AutoBackupDB ()
         {
             string NewBackup = "ImeTrackrDbBAK" + DateTime.Today.ToString("MM-dd-yyyy") + ".sdf";
-            string BackUpPath = @"D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\" + NewBackup;
+            string BackUpPath = @"C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\" + NewBackup;
 
             var db = new ImeTrackrContext();
             db.Database.Connection.Close();
             if (!File.Exists(BackUpPath))
             {
-                File.Copy(@"D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\ImeTrackrDb.sdf",
+                File.Copy(@"C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\ImeTrackrDB.sdf",
                 BackUpPath);
             }
 
@@ -28,12 +28,12 @@ namespace ImeTrackr.DAL
         public void BackupDB()
         {
             string NewBackup = "ImeTrackrDbBAK" + DateTime.Today.ToString("MM-dd-yyyy") + ".sdf";
-            string BackUpPath = @"D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\" + NewBackup;
+            string BackUpPath = @"C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\" + NewBackup;
 
             var db = new ImeTrackrContext();
             db.Database.Connection.Close();
             File.Delete(BackUpPath);
-            File.Copy(@"D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\ImeTrackrDb.sdf",
+            File.Copy(@"C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\App_Data\ImeTrackrDB.sdf",
             BackUpPath);
 
             db.Database.Connection.Open();

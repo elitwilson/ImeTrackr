@@ -57,11 +57,12 @@
             @Html.ValidationMessageFor(model => model.CaseName)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.OrganizationId, "Contact")
+            @Html.LabelFor(model => model.ContactId, "Contact")
         </div>
         <div class="editor-field">
             @Html.DropDownList("ContactId", String.Empty)
-            @Html.ValidationMessageFor(model => model.ContactId)
+            @Html.ValidationMessageFor(model => model.ContactId) | 
+            @Html.ActionLink("New", "Create", "Contact")
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.DayOne)

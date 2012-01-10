@@ -29,8 +29,11 @@ namespace ImeTrackr.Controllers
             ViewBag.ContactSortParm = sortOrder == "Contact" ? "Contact desc" : "Contact";
             ViewBag.DateSortParm = sortOrder == "Date" ? "Date desc" : "Date";
             
-            var phoneCalls = from p in db.PhoneCalls
-                             select p;
+            //var phoneCalls = from p in db.PhoneCalls
+            //                 select p;
+
+            var phoneCalls = db.PhoneCalls.Include(p => p.Contact)
+                .OrderByDescending(p => p.Date);
 
             switch (sortOrder)
             {

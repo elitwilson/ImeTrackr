@@ -1,4 +1,4 @@
-﻿@model ImeTrackr.Models.Organization
+﻿@model ImeTrackr.ViewModels.OrganizationDetailsVM
 
 @{
     ViewBag.Title = "Details";
@@ -11,40 +11,15 @@
 
     <div class="display-label">Name</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
+        @Html.DisplayFor(model => model.Organization.Name)
     </div>
-
-    <div class="display-label">StAddress</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StAddress)
-    </div>
-
-    <div class="display-label">City</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.City)
-    </div>
-
-    <div class="display-label">State</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.State)
-    </div>
-
-    <div class="display-label">Zip</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Zip)
-    </div>
-
-    <div class="display-label">MainPhone</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.MainPhone)
-    </div>
-
-    <div class="display-label">Fax</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Fax)
-    </div>
+    <div class="display-label">Organization Contacts</div>
+    @foreach (var item in Model.Contacts)
+    {
+        <div class="display-field"> @Html.ActionLink(item.FullName, "../Contact/Details", new { id = item.Id }) </div>
+    }
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Organization.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

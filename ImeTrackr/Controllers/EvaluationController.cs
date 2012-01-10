@@ -18,7 +18,7 @@ namespace ImeTrackr.Controllers
         public ViewResult Index()
         {
             var evaluations = db.Evaluations.Include(e => e.Plaintiff)
-                .Include(e => e.Organization)
+                //.Include(e => e.Contact.Organization.Name)
                 .Include(e => e.Contact)
                 .Include(e => e.Tech)
                 .OrderBy(e => e.Plaintiff.LastName);
@@ -60,7 +60,7 @@ namespace ImeTrackr.Controllers
             }
 
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", evaluation.PlaintiffId);
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", evaluation.OrganizationId);
+            
             ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", evaluation.ContactId);
             ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", evaluation.TechId);
             return View(evaluation);
@@ -73,7 +73,6 @@ namespace ImeTrackr.Controllers
         {
             Evaluation evaluation = db.Evaluations.Find(id);
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", evaluation.OrganizationId);
             ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", evaluation.ContactId);
             ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", evaluation.TechId);
             return View(evaluation);
@@ -92,7 +91,6 @@ namespace ImeTrackr.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", evaluation.OrganizationId);
             ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", evaluation.ContactId);
             ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", evaluation.TechId);
             return View(evaluation);

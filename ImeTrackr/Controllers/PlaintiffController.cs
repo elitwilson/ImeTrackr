@@ -18,7 +18,7 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Index()
         {
-            var plaintiffs = db.Plaintiffs.Include(p => p.Contact);
+            var plaintiffs = db.Plaintiffs.Include(p => p.Evaluations);
             return View(plaintiffs.ToList());
         }
 
@@ -53,7 +53,7 @@ namespace ImeTrackr.Controllers
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
+            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
             return View(plaintiff);
         }
         
@@ -63,7 +63,7 @@ namespace ImeTrackr.Controllers
         public ActionResult Edit(int id)
         {
             Plaintiff plaintiff = db.Plaintiffs.Find(id);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
+            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
             return View(plaintiff);
         }
 
@@ -79,7 +79,7 @@ namespace ImeTrackr.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
+            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FirstName", plaintiff.ContactId);
             return View(plaintiff);
         }
 

@@ -56,6 +56,12 @@ namespace ImeTrackr.Controllers
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", contact.OrganizationId);
             return View(contact);
         }
+
+        public ActionResult CreatePartial()
+        {
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return PartialView("_CreateContact");
+        }
         
         //
         // GET: /Contact/Edit/5

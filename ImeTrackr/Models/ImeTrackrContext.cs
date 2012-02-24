@@ -29,10 +29,11 @@ namespace ImeTrackr.Models
             /* Code First configures cascade delete on required relationships by default.
             * In this app, CascadeOnDelete needs to be switched to "false" for phone call in order
             * to prevent a Cyclical Reference Error. */
-            modelBuilder.Entity<Contact>()
-                .HasRequired(e => e.Organization)
-                .WithMany()
-                .HasForeignKey(e => e.OrganizationId).WillCascadeOnDelete(false);
+            
+            //modelBuilder.Entity<Contact>()
+            //    .HasRequired(e => e.Organization)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.OrganizationId).WillCascadeOnDelete(false);
         }
     }
 

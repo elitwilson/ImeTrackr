@@ -7,7 +7,7 @@ namespace ImeTrackr.Models
 {
     public class Contact : Entity
     {
-        public int OrganizationId { get; set; }
+        public int? OrganizationId { get; set; }
         
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -20,7 +20,7 @@ namespace ImeTrackr.Models
         public ICollection<PhoneCall> PhoneCalls { get; set; }
         public ICollection<Evaluation> Evaluations { get; set; }
 
-        public Organization Organization { get; set; }
+        public virtual Organization Organization { get; set; }
 
         public string FullName
         {

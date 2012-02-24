@@ -57,6 +57,26 @@ namespace ImeTrackr.Controllers
             return View(contact);
         }
 
+        public ActionResult _CreateContact()
+        {
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult _CreateContact(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return RedirectToAction("Create");
+            }
+
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return View();
+        }
+
         public ActionResult CreatePartial()
         {
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");

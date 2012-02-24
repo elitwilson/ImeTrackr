@@ -84,8 +84,8 @@ namespace ImeTrackr.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName");
+            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs.OrderBy(p => p.LastName), "Id", "LastFirst");
+            ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
             return View();
         } 
 

@@ -112,6 +112,7 @@
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PhoneCallController.cs" />
     <Compile Include="Controllers\PlaintiffController.cs" />
+    <Compile Include="Controllers\SandBoxController.cs" />
     <Compile Include="Controllers\TechController.cs" />
     <Compile Include="DAL\DbInitializer.cs" />
     <Compile Include="DAL\DbRepository.cs" />
@@ -315,6 +316,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_CreateContact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\SandBox\Index.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

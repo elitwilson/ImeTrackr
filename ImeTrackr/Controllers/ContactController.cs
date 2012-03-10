@@ -48,6 +48,12 @@ namespace ImeTrackr.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.IsAjaxRequest())
+                {
+                    db.Contacts.Add(contact);
+                    db.SaveChanges();
+                    return null;
+                }
                 db.Contacts.Add(contact);
                 db.SaveChanges();
                 return RedirectToAction("Index");  

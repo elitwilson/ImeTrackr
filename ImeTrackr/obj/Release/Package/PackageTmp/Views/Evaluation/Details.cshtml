@@ -1,0 +1,65 @@
+﻿@model ImeTrackr.Models.Evaluation
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Evaluation</legend>
+
+    <div class="display-label">Plaintiff</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Plaintiff.FirstName)
+    </div>
+
+    <div class="display-label">Organization</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Organization.Name)
+    </div>
+
+    <div class="display-label">Contact</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.FirstName)
+    </div>
+
+    <div class="display-label">Tech</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tech.FirstName)
+    </div>
+
+    <div class="display-label">Notes</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Notes)
+    </div>
+
+    <div class="display-label">DayOne</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayOne)
+    </div>
+
+    <div class="display-label">DayTwo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DayTwo)
+    </div>
+
+    <div class="display-label">CaseNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CaseNumber)
+    </div>
+
+    <div class="display-label">CaseName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CaseName)
+    </div>
+
+    <div class="display-label">IsComplete</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsComplete)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

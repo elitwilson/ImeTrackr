@@ -43,5 +43,14 @@ namespace ImeTrackr.DAL
         {
             
         }
+
+        public IQueryable<Contact> GetContacts(Organization organization)
+        {
+            var contacts = new List<Contact>();
+
+            
+
+            return contacts.AsQueryable();
+        }
     }
 }

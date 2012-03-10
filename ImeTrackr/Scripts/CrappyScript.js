@@ -3,14 +3,13 @@
         e.preventDefault();
 
         var url = $(this).attr('href');
+
         $('#ContactPartial').load(url);
-        $('.dialog').dialog({
+
+        $('#ContactPartial').dialog({
             modal: true,
             resizable: false
         });
     })
-    $('.popupForm').submit(function (e) {
-        e.preventDefault();
 
-    });
 });

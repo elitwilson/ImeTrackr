@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ImeTrackr.Models;
+using ImeTrackr.DAL;
 
 namespace ImeTrackr.Controllers
 { 
@@ -33,18 +34,27 @@ namespace ImeTrackr.Controllers
             return PartialView();
         }
 
+        //
+        // POST
         [HttpPost]
-        public ActionResult _CreateContact(Contact contact)
+        public JsonResult _CreateContact(Contact contact)
         {
             if (ModelState.IsValid)
             {
+                if (Request.IsAjaxRequest())
+                {
+                    db.Contacts.Add(contact);
+                    db.SaveChanges();
+                    ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Name");
+                    return Json(contact, JsonRequestBehavior.AllowGet);
+                }
                 db.Contacts.Add(contact);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return Json("Success2");
             }
 
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
-            return View();
+            return Json("Success3");
         }
 
         public ViewResult Details(int id)
@@ -61,6 +71,9 @@ namespace ImeTrackr.Controllers
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
             ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
+
+            
+
             ViewBag.TechId = new SelectList(db.Techs.OrderBy(t => t.LastName), "Id", "LastFirst");
             return View();
         } 

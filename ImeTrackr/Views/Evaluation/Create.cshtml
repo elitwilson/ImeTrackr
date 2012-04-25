@@ -1,4 +1,4 @@
-﻿@model ImeTrackr.Models.Evaluation
+﻿@model ImeTrackr.ViewModels.EvaluationViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -23,7 +23,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Plaintiff.FirstName)
-            @Html.ValidationMessageFor(model => model.PlaintiffId)
+            @Html.ValidationMessageFor(model => model.Plaintiff.Id)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Plaintiff.LastName)
@@ -47,42 +47,42 @@
             @Html.ValidationMessageFor(model => model.PlaintiffId)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.CaseNumber)
+            @Html.LabelFor(model => model.Evaluation.CaseNumber)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CaseNumber)
-            @Html.ValidationMessageFor(model => model.CaseNumber)
+            @Html.EditorFor(model => model.Evaluation.CaseNumber)
+            @Html.ValidationMessageFor(model => model.Evaluation.CaseNumber)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.CaseName)
+            @Html.LabelFor(model => model.Evaluation.CaseName)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.CaseName)
-            @Html.ValidationMessageFor(model => model.CaseName)
+            @Html.EditorFor(model => model.Evaluation.CaseName)
+            @Html.ValidationMessageFor(model => model.Evaluation.CaseName)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.ContactId, "Contact")
+            @Html.LabelFor(model => model.Contact.Id, "Contact")
         </div>
         <div class="editor-field">
             @Html.DropDownList("ContactId", String.Empty)
-            @Html.ValidationMessageFor(model => model.ContactId) | 
+            @Html.ValidationMessageFor(model => model.Contact.Id) | 
             @Html.ActionLink("Create Contact", "_CreateContact", null, new { id = "createContact" })
 
             
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.DayOne)
+            @Html.LabelFor(model => model.Evaluation.DayOne)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DayOne)
-            @Html.ValidationMessageFor(model => model.DayOne)
+            @Html.EditorFor(model => model.Evaluation.DayOne)
+            @Html.ValidationMessageFor(model => model.Evaluation.DayOne)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.DayTwo)
+            @Html.LabelFor(model => model.Evaluation.DayTwo)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DayTwo)
-            @Html.ValidationMessageFor(model => model.DayTwo)
+            @Html.EditorFor(model => model.Evaluation.DayTwo)
+            @Html.ValidationMessageFor(model => model.Evaluation.DayTwo)
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.TechId, "Technician")
@@ -92,11 +92,11 @@
             @Html.ValidationMessageFor(model => model.TechId)
         </div>
         <div class="editor-label">
-            @Html.LabelFor(model => model.Notes)
+            @Html.LabelFor(model => model.Evaluation.Notes)
         </div>
         <div class="editor-field">
-            @Html.TextAreaFor(model => model.Notes)
-            @Html.ValidationMessageFor(model => model.Notes)
+            @Html.TextAreaFor(model => model.Evaluation.Notes)
+            @Html.ValidationMessageFor(model => model.Evaluation.Notes)
         </div>
 
         <p>

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using ImeTrackr.Models;
 using ImeTrackr.DAL;
+using ImeTrackr.ViewModels;
 
 namespace ImeTrackr.Controllers
 { 
@@ -68,34 +69,54 @@ namespace ImeTrackr.Controllers
 
         public ActionResult Create()
         {
+            EvaluationViewModel vm = new EvaluationViewModel();            
+
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
             ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
-
+            
+            
+            //vm.ContactSelectList = new SelectList(GetContacts(), "Id", "FullName");
+            //vm.ContactSelectList.ToList();
             
 
             ViewBag.TechId = new SelectList(db.Techs.OrderBy(t => t.LastName), "Id", "LastFirst");
             return View();
-        } 
+        }
 
+        private static IEnumerable<Contact> GetContacts()
+        {
+            IEnumerable<Contact> contacts;
+            using (ImeTrackrContext db = new ImeTrackrContext())
+            {
+                contacts = (from one in db.Contacts
+                            orderby one.LastName
+                            select one).ToList();
+            }
+            ImeTrackrContext context = new ImeTrackrContext();
+            return contacts;
+        }
         //
         // POST: /Evaluation/Create
 
         [HttpPost]
-        public ActionResult Create(Evaluation evaluation)
+        public ActionResult Create(Evaluation evaluation, Plaintiff plaintiff)
         {
+
             if (ModelState.IsValid)
             {
                 db.Evaluations.Add(evaluation);
+                db.Plaintiffs.Add(plaintiff);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", evaluation.PlaintiffId);
-            
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", evaluation.ContactId);
-            ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", evaluation.TechId);
-            return View(evaluation);
+            EvaluationViewModel vm = new EvaluationViewModel();
+
+            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", vm.Evaluation.Id);
+            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", vm.Contact.Id);
+            ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", vm.TechId);
+            return View(vm);
         }
         
         //

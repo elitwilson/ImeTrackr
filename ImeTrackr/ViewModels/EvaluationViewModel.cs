@@ -8,32 +8,29 @@ using ImeTrackr.Models;
 
 namespace ImeTrackr.ViewModels
 {
-    public class EvaluationViewModel : Entity
+    public class EvaluationViewModel
     {
-        [Display(Name = "First Name:")]
-        public string FirstName { get; set; }
+        public int PlaintiffId { get; set; }
+        public int EvaluationId { get; set; }
 
-        [Display(Name = "Last Name:")]
-        public string LastName { get; set; }
+        public Evaluation Evaluation { get; set; }
+        public Plaintiff Plaintiff { get; set; }
+        public Contact Contact { get; set; }
 
-        [Display(Name = "DOB:")]
-        public DateTime? DOB { get; set; }
+        public IEnumerable<Contact> Contacts { get; set; }
+        public IEnumerable<Plaintiff> Plaintiffs { get; set; }
+        public IEnumerable<Tech> Techs { get; set; }
 
-        [Display(Name = "SSN:")]
-        public int SSN { get; set; }
-
-        [Display(Name = "Case Name:")]
-        public string CaseName { get; set; }
-
-        [Display(Name = "Case Number:")]
-        public string CaseNumber { get; set; }
-
-        [Display(Name = "Contact:")]
+        //[Display(Name = "Contact:")]
         public int ContactId { get; set; }
         public IEnumerable<SelectListItem> ContactSelectList { get; set; }
 
         [Display(Name = "Organization:")]
         public int OrganizationId { get; set; }
         public IEnumerable<SelectListItem> OrganizationSelectList { get; set; }
+
+        [Display(Name = "Technician:")]
+        public int TechId { get; set; }
+        public IEnumerable<SelectListItem> TechSelectList { get; set; }
     }
 }

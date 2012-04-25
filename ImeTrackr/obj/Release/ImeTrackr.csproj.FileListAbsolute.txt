@@ -5,3 +5,6 @@ D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\EntityFramework
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ResolveAssemblyReference.cache
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ImeTrackr.dll
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ImeTrackr.pdb
+D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.dll
+D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.pdb
+D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.xml

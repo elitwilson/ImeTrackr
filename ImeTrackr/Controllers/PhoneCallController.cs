@@ -6,13 +6,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ImeTrackr.Models;
+using ImeTrackr.ViewModels;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 { 
     public class PhoneCallController : Controller
     {
         private ImeTrackrContext db = new ImeTrackrContext();
-
+        
         //
         // GET: /PhoneCall/
 
@@ -84,9 +87,15 @@ namespace ImeTrackr.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs.OrderBy(p => p.LastName), "Id", "LastFirst");
-            ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
-            return View();
+            PhoneCallViewModel vm = new PhoneCallViewModel();
+
+            //I know I am doing this inefficiently. Don't need a list of entity models in VM
+            vm.Date = DateTime.Now.Date;
+            vm.Plaintiffs = db.Plaintiffs;
+            vm.Organizations = db.Organizations;
+            vm.Contacts = db.Contacts;
+            
+            return View(vm);
         } 
 
         //
@@ -97,14 +106,33 @@ namespace ImeTrackr.Controllers
         {
             if (ModelState.IsValid)
             {
+
+
                 db.PhoneCalls.Add(phonecall);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", phonecall.PlaintiffId);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", phonecall.ContactId);
+            //ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", phonecall.PlaintiffId);
+            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", phonecall.ContactId);
             return View(phonecall);
+        }
+
+        [HttpPost]
+        public ActionResult PopulateContacts(int id)
+        {
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            var query = from obj in db.Contacts
+                        where obj.OrganizationId == id
+                        select new { obj.Id, obj.LastName, obj.FirstName };
+
+            //var result = serializer.Serialize(query);
+
+            var result = JsonConvert.SerializeObject(query);
+
+            return Json(result);
+
         }
         
         //

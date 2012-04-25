@@ -8,6 +8,7 @@ namespace ImeTrackr.Models
 {
     public class PhoneCall : Entity
     {
+        public int OrganizationId { get; set; }
         public int ContactId { get; set; }
         public int? PlaintiffId { get; set; }
 

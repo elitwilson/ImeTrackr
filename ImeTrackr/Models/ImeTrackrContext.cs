@@ -18,11 +18,11 @@ namespace ImeTrackr.Models
         public DbSet<Organization> Organizations { get; set; }
         public DbSet<PhoneCall> PhoneCalls { get; set; }
         public DbSet<Tech> Techs { get; set; }
-
-        public DbSet<EvaluationViewModel> EvaluationViewModels { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<EvaluationViewModel>();
+                
+            
             //Uncomment this line to prevent EF from checking to see if the model changed
             //modelBuilder.Conventions.Remove<IncludeMetadataConvention>();
 

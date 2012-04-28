@@ -19,3 +19,7 @@ _ReSharper.*
 *.csproj.user
 *.resharper.user
 *.resharper
+
+#Tests
+######
+/ImeTrackr.Tests

@@ -19,10 +19,9 @@
                 data: { id: $("#OrganizationId").val() },
                 dataType: 'json',
                 success: function (response) {
-                    var resultJSON = '{"FirstName":"John","LastName":"Doe"}';
-                    var array = $.parseJSON(response);
+                    var deserialize = $.parseJSON(response);
                     $('#ContactId').html('');
-                    $.each(array, function (k, v) {
+                    $.each(deserialize, function (k, v) {
                         var fullName = v.FirstName + " " + v.LastName;
                         $('<option value="' + v.Id + '">' + fullName + '</option>').appendTo('#ContactId');
                     });
@@ -49,13 +48,13 @@
                 <option value="0" selected="selected"></option>
             @foreach (var item in Model.Plaintiffs)
             {
-                <option value ="@item.Id">@item.FullName</option>
+                <option value ="@item.Id">@item.LastFirst</option>
             }
         </select>
         <p />
         Organization: <br />
         <select id="OrganizationId" name="OrganizationId">
-                <option value="0" selected="selected"></option>
+            <option value="0" selected="selected"></option>
             @foreach (var item in Model.Organizations)
             {
                 <option value ="@item.Id">@item.Name</option>
@@ -67,7 +66,7 @@
             <option value="0" selected="selected"></option>
             @foreach (var item in Model.Contacts)
             {
-                <option value = "@item.Id">@item.FullName</option>
+                <option value = "@item.Id">@item.LastFirst</option>
             }
         </select>
         Message: <br />

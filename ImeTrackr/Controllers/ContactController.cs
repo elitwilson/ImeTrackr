@@ -76,7 +76,7 @@ namespace ImeTrackr.Controllers
             {
                 db.Contacts.Add(contact);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return View("Evaluation");
             }
 
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");

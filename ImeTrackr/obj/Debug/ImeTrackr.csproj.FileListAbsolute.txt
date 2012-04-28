@@ -15,3 +15,4 @@ D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ResolveAssemblyReference.cache
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ImeTrackr.dll
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Debug\ImeTrackr.pdb
+D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\System.Data.SqlServerCe.dll

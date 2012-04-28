@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using ImeTrackr.Models;
 using ImeTrackr.DAL;
 using ImeTrackr.ViewModels;
+using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 { 
@@ -20,7 +21,6 @@ namespace ImeTrackr.Controllers
         public ViewResult Index()
         {
             var evaluations = db.Evaluations.Include(e => e.Plaintiff)
-                //.Include(e => e.Contact.Organization.Name)
                 .Include(e => e.Contact)
                 .Include(e => e.Tech)
                 .OrderBy(e => e.Plaintiff.LastName);
@@ -46,12 +46,12 @@ namespace ImeTrackr.Controllers
                 {
                     db.Contacts.Add(contact);
                     db.SaveChanges();
-                    ViewBag.ContactId = new SelectList(db.Contacts, "Id", "Name");
+
                     return Json(contact, JsonRequestBehavior.AllowGet);
                 }
                 db.Contacts.Add(contact);
                 db.SaveChanges();
-                return Json("Success2");
+                return Json(contact, JsonRequestBehavior.AllowGet);
             }
 
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
@@ -63,27 +63,7 @@ namespace ImeTrackr.Controllers
             Evaluation evaluation = db.Evaluations.Find(id);
             return View(evaluation);
         }
-
-        //
-        // GET: /Evaluation/Create
-
-        public ActionResult Create()
-        {
-            EvaluationViewModel vm = new EvaluationViewModel();            
-
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
-            ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
-            
-            
-            //vm.ContactSelectList = new SelectList(GetContacts(), "Id", "FullName");
-            //vm.ContactSelectList.ToList();
-            
-
-            ViewBag.TechId = new SelectList(db.Techs.OrderBy(t => t.LastName), "Id", "LastFirst");
-            return View();
-        }
-
+        
         private static IEnumerable<Contact> GetContacts()
         {
             IEnumerable<Contact> contacts;
@@ -96,27 +76,43 @@ namespace ImeTrackr.Controllers
             ImeTrackrContext context = new ImeTrackrContext();
             return contacts;
         }
+
+        //
+        // GET: /Evaluation/Create
+        public ActionResult Create()
+        {
+            EvaluationViewModel vm = new EvaluationViewModel();            
+
+            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
+            ViewBag.TechId = new SelectList(db.Techs.OrderBy(t => t.LastName), "Id", "LastFirst");
+            return View();
+        }
+
+
         //
         // POST: /Evaluation/Create
 
         [HttpPost]
-        public ActionResult Create(Evaluation evaluation, Plaintiff plaintiff)
+        public ActionResult Create(Evaluation eval)
         {
-
+            
             if (ModelState.IsValid)
             {
-                db.Evaluations.Add(evaluation);
+                var plaintiff = eval.Plaintiff;
+                db.Evaluations.Add(eval);
                 db.Plaintiffs.Add(plaintiff);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }
 
-            EvaluationViewModel vm = new EvaluationViewModel();
+            //EvaluationViewModel vm = new EvaluationViewModel();
 
-            ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", vm.Evaluation.Id);
-            ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", vm.Contact.Id);
-            ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", vm.TechId);
-            return View(vm);
+            //ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", vm.Evaluation.Id);
+            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", vm.Contact.Id);
+            //ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", vm.TechId);
+            return RedirectToAction("Create");
         }
         
         //

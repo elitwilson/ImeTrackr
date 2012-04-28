@@ -91,9 +91,9 @@ namespace ImeTrackr.Controllers
 
             //I know I am doing this inefficiently. Don't need a list of entity models in VM
             vm.Date = DateTime.Now.Date;
-            vm.Plaintiffs = db.Plaintiffs;
-            vm.Organizations = db.Organizations;
-            vm.Contacts = db.Contacts;
+            vm.Plaintiffs = db.Plaintiffs.OrderBy(p => p.LastName);
+            vm.Organizations = db.Organizations.OrderBy(o => o.Name);
+            vm.Contacts = db.Contacts.OrderBy(c => c.LastName);
             
             return View(vm);
         } 

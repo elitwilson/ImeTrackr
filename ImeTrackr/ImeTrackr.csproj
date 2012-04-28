@@ -143,6 +143,10 @@
     <Compile Include="ViewModels\PhoneCallViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ASPNETDB.MDF" />
+    <Content Include="App_Data\aspnetdb_log.ldf">
+      <DependentUpon>ASPNETDB.MDF</DependentUpon>
+    </Content>
     <Content Include="App_Data\ImeTrackrDb.sdf" />
     <Content Include="Content\jquery-ui-1.8.17.custom.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

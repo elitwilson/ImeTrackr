@@ -275,9 +275,6 @@
     <Content Include="Views\Contact\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Shared\EditorTemplates\EvaluationViewModel.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\PhoneCall\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

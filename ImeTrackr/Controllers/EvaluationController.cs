@@ -9,6 +9,7 @@ using ImeTrackr.Models;
 using ImeTrackr.DAL;
 using ImeTrackr.ViewModels;
 using Newtonsoft.Json;
+using ImeTrackr.DAL;
 
 namespace ImeTrackr.Controllers
 { 
@@ -23,7 +24,7 @@ namespace ImeTrackr.Controllers
             var evaluations = db.Evaluations.Include(e => e.Plaintiff)
                 .Include(e => e.Contact)
                 .Include(e => e.Tech)
-                .OrderBy(e => e.Plaintiff.LastName);
+                .OrderByDescending(e => e.DayTwo);
             return View(evaluations.ToList());
         }
 
@@ -81,8 +82,7 @@ namespace ImeTrackr.Controllers
         // GET: /Evaluation/Create
         public ActionResult Create()
         {
-            EvaluationViewModel vm = new EvaluationViewModel();            
-
+            EvaluationViewModel vm = new EvaluationViewModel();
             ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName");
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
             ViewBag.ContactId = new SelectList(db.Contacts.OrderBy(c => c.LastName), "Id", "LastFirst");
@@ -95,14 +95,21 @@ namespace ImeTrackr.Controllers
         // POST: /Evaluation/Create
 
         [HttpPost]
-        public ActionResult Create(Evaluation eval)
+        public ActionResult Create(EvaluationViewModel vm)
         {
             
             if (ModelState.IsValid)
             {
-                var plaintiff = eval.Plaintiff;
-                db.Evaluations.Add(eval);
-                db.Plaintiffs.Add(plaintiff);
+                vm.Evaluation.Plaintiff = vm.Plaintiff;
+                vm.Evaluation.ContactId = vm.ContactId;                
+
+                //Set this Evaluation's OrganizationId to the OrganizationId of selected Contact
+                Contact contact = db.Contacts.SingleOrDefault(c => c.Id == vm.ContactId);
+                Organization organization = db.Organizations.SingleOrDefault(o => o.Id == contact.OrganizationId);
+                vm.Evaluation.OrganizationId = organization.Id;
+
+                db.Plaintiffs.Add(vm.Plaintiff);
+                db.Evaluations.Add(vm.Evaluation);
                 db.SaveChanges();
                 return RedirectToAction("Index");  
             }

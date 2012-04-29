@@ -9,6 +9,8 @@ namespace ImeTrackr.DAL
 {
     public class DbRepository
     {
+        private ImeTrackrContext db = new ImeTrackrContext();
+        
         public void AutoBackupDB ()
         {
             string NewBackup = "ImeTrackrDbBAK" + DateTime.Today.ToString("MM-dd-yyyy") + ".sdf";
@@ -42,6 +44,13 @@ namespace ImeTrackr.DAL
         public void RestoreDb()
         {
             
+        }
+
+        public Organization GetOrganizationById(int id)
+        {
+            Organization org = db.Organizations.Where(o => o.Id == id).SingleOrDefault();
+            
+            return org;
         }
 
         public IQueryable<Contact> GetContacts(Organization organization)

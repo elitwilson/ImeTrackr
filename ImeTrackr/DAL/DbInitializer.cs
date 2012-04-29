@@ -82,6 +82,13 @@ namespace ImeTrackr.DAL
                 new Evaluation { Id=5, PlaintiffId=4, ContactId=5, TechId=2, DayOne = new DateTime(2012, 2, 22), DayTwo = new DateTime(2012, 2, 23), Notes = "", CaseNumber="", CaseName="", IsComplete=false }
             };
             evaluations.ForEach(e => context.Evaluations.Add(e));
+
+            //Make sure to set Evaluation.OrganizationId to Evaluation.Contact.OrganizationId
+            foreach (var item in evaluations)
+            {
+                item.OrganizationId = item.Contact.OrganizationId;
+            }
+
             context.SaveChanges();
         }
     }

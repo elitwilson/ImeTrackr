@@ -4,8 +4,14 @@
     ViewBag.Title = "Evaluations";
 }
 
-<h2>Evaluation</h2>
 
+
+<h2>Evaluation</h2>
+<script type="text/javascript">
+    $('.check-box:checkbox').change(function () {
+        alert("test");
+    });
+</script>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -60,12 +66,20 @@
             @Html.DisplayFor(modelItem => item.CaseName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsComplete)
+            @if (item.IsComplete == true)
+            {
+                <input id="@item.Id" class="check-box" type="checkbox" value="@item.IsComplete" name="IsComplete" checked="checked" />
+            }
+            else
+            {
+                <input id="@item.Id" class="check-box" type="checkbox" value="@item.IsComplete" name="IsComplete" />
+            }
+            
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }

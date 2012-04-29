@@ -16,6 +16,7 @@ namespace ImeTrackr.ViewModels
         public Evaluation Evaluation { get; set; }
         public Plaintiff Plaintiff { get; set; }
         public Contact Contact { get; set; }
+        public Organization Organization { get; set; }
 
         public IEnumerable<Contact> Contacts { get; set; }
         public IEnumerable<Plaintiff> Plaintiffs { get; set; }

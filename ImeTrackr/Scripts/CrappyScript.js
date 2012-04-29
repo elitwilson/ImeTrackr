@@ -8,7 +8,9 @@
 
         $('#ContactPartial').dialog({
             modal: true,
-            resizable: false
+            resizable: false,
+            position: "top",
+            title: "New Contact"
         });
     })
 

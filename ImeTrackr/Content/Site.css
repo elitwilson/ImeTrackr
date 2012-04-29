@@ -324,3 +324,8 @@ div#title {
 .tri-state {
     width: 6em;
 }
+
+.display-label
+{
+    font-weight: bold;
+}

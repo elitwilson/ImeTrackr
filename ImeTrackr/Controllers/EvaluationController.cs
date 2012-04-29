@@ -9,7 +9,6 @@ using ImeTrackr.Models;
 using ImeTrackr.DAL;
 using ImeTrackr.ViewModels;
 using Newtonsoft.Json;
-using ImeTrackr.DAL;
 
 namespace ImeTrackr.Controllers
 { 
@@ -61,8 +60,25 @@ namespace ImeTrackr.Controllers
 
         public ViewResult Details(int id)
         {
+            EvaluationViewModel vm = new EvaluationViewModel();
             Evaluation evaluation = db.Evaluations.Find(id);
-            return View(evaluation);
+
+            vm.Evaluation = evaluation;
+            vm.Plaintiff = evaluation.Plaintiff;
+            
+            if (evaluation.OrganizationId != null)
+            {
+                Organization organization = db.Organizations.SingleOrDefault(o => o.Id == evaluation.OrganizationId);
+                vm.Organization = organization;
+
+            }
+            if (evaluation.Contact != null)
+            {
+                Contact contact = db.Contacts.SingleOrDefault(c => c.Id == evaluation.ContactId);
+                vm.Contact = contact;
+            }
+
+            return View(vm);
         }
         
         private static IEnumerable<Contact> GetContacts()
@@ -101,7 +117,8 @@ namespace ImeTrackr.Controllers
             if (ModelState.IsValid)
             {
                 vm.Evaluation.Plaintiff = vm.Plaintiff;
-                vm.Evaluation.ContactId = vm.ContactId;                
+                vm.Evaluation.ContactId = vm.ContactId;
+                vm.Evaluation.TechId = vm.TechId;
 
                 //Set this Evaluation's OrganizationId to the OrganizationId of selected Contact
                 Contact contact = db.Contacts.SingleOrDefault(c => c.Id == vm.ContactId);
@@ -114,11 +131,6 @@ namespace ImeTrackr.Controllers
                 return RedirectToAction("Index");  
             }
 
-            //EvaluationViewModel vm = new EvaluationViewModel();
-
-            //ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", vm.Evaluation.Id);
-            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", vm.Contact.Id);
-            //ViewBag.TechId = new SelectList(db.Techs, "Id", "FullName", vm.TechId);
             return RedirectToAction("Create");
         }
         

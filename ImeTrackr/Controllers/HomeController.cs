@@ -8,8 +8,10 @@ using System.IO;
 using ImeTrackr.DAL;
 using ImeTrackr.Models;
 
+
 namespace ImeTrackr.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         ImeTrackrContext db = new ImeTrackrContext();

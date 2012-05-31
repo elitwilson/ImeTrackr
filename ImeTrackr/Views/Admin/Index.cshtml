@@ -1,0 +1,32 @@
+﻿@model ImeTrackr.Models.AdminModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Administration</h2>
+<p />
+<h3>Users</h3>
+<table>
+    <tr>
+        <th>User Name</th>
+        <th>Email</th>
+    </tr>
+@foreach (MembershipUser item in Model.Users)
+{
+    <tr>
+        <td>@Html.ActionLink(item.UserName, "Edit", new { userName = item.UserName })</td>
+        <td>@Html.DisplayFor(modelItem => item.Email)</td>
+        <td>@Html.ActionLink("Delete", "Delete")</td>
+    </tr>
+}
+</table>
+<p />
+<h3>Roles</h3>
+@foreach (var item in Model.Roles)
+{
+    @Html.Display(item)
+}
+
+
+

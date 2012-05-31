@@ -1,0 +1,22 @@
+﻿@model ImeTrackr.Models.AdminEditUser
+
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+
+<p />@Html.DisplayFor(m => m.User.UserName)
+<p />@Html.DisplayFor(m => m.User.Email)
+<p />@Html.DisplayFor(m => m.User.CreationDate)
+<p />@Html.DisplayFor(m => m.User.Comment)
+
+@foreach (var item in Model.Roles)
+{
+    @Html.Display(item)
+}
+
+<p>
+    <input type="submit" value="Submit" />
+</p>
+
+

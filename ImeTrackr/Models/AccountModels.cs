@@ -64,4 +64,16 @@ namespace ImeTrackr.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
+
+    public class AdminModel
+    {
+        public MembershipUserCollection Users { get; set; }
+        public String[] Roles { get; set; }
+    }
+
+    public class AdminEditUser
+    {
+        public MembershipUser User { get; set; }
+        public String[] Roles { get; set; }
+    }
 }

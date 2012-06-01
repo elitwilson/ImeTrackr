@@ -69,11 +69,22 @@ namespace ImeTrackr.Models
     {
         public MembershipUserCollection Users { get; set; }
         public String[] Roles { get; set; }
+
+        [Display(Name = "Role Name")]
+        public String RoleName { get; set; }
     }
 
     public class AdminEditUser
     {
         public MembershipUser User { get; set; }
+
+        [Display(Name = "User Name")]
+        public String UserName { get; set; }
+        [Display(Name = "E-Mail")]
+        public string Email { get; set; }
+        [Display(Name = "Comments")]
+        public string Comment { get; set; }
+
         public String[] Roles { get; set; }
     }
 }

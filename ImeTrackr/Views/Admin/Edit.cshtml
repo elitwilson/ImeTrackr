@@ -4,19 +4,65 @@
     ViewBag.Title = "Edit";
 }
 <h2>Edit</h2>
-
-<p />@Html.DisplayFor(m => m.User.UserName)
-<p />@Html.DisplayFor(m => m.User.Email)
-<p />@Html.DisplayFor(m => m.User.CreationDate)
-<p />@Html.DisplayFor(m => m.User.Comment)
-
-@foreach (var item in Model.Roles)
+<div id="EditForm">
+@using (Html.BeginForm())
 {
-    @Html.Display(item)
-}
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit User</legend>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Comment)
+            @Html.ValidationMessageFor(m => m.Comment)
+        </div>
 
-<p>
-    <input type="submit" value="Submit" />
-</p>
+    @foreach (var role in Model.Roles)
+    {
+        @Html.CheckBox(role)
+        @Html.Label(role)
+        <br />
+    }
+    <p>
+        <input type="submit" value="Submit" />
+    </p>    
+    </fieldset>
+}
+</div>
+<script type="text/javascript">
+    $.fn.serializeObject = function()
+    {
+        var o = {};
+        var a = this.serializeArray();
+        $.each(a, function() {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+        return o;
+    };
+
+</script>
+
 
 

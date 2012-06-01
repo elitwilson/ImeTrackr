@@ -7,25 +7,65 @@
 <h2>Administration</h2>
 <p />
 <h3>Users</h3>
-<table>
-    <tr>
-        <th>User Name</th>
-        <th>Email</th>
-    </tr>
-@foreach (MembershipUser item in Model.Users)
+@if (Model.Users != null)
 {
-    <tr>
-        <td>@Html.ActionLink(item.UserName, "Edit", new { userName = item.UserName })</td>
-        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-        <td>@Html.ActionLink("Delete", "Delete")</td>
-    </tr>
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>Email</th>
+        </tr>
+    @foreach (MembershipUser item in Model.Users)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.UserName, "Edit", new { user = item })</td>
+            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { user = item.UserName })</td>
+        </tr>
+    }
+    </table>    
 }
-</table>
+else
+{
+    <text>No users defined</text>
+}
+
 <p />
 <h3>Roles</h3>
-@foreach (var item in Model.Roles)
+
+@if (Model.Roles != null)
 {
-    @Html.Display(item)
+    <table>
+        <tr>
+            <th>Role Name</th>
+        </tr>
+    @foreach (var item in Model.Roles)
+    {
+
+            <tr>
+                <td>@Html.Raw(item)</td>
+                <td>@Html.ActionLink("Delete", "DeleteRole", new { roleName = item })</td>
+            </tr>
+        
+    }
+    </table>
+}
+else
+{
+    <text>No roles defined.</text>
+}   
+<p />
+
+@using (Html.BeginForm("AddRole", "Admin"))
+{
+    <table>
+        <tr>
+            <th>Add Role</th>
+        </tr>
+        <tr>
+            <td>@Html.EditorFor(m => m.RoleName)</td>
+            <td><input type="submit" value="Create" /></td>
+        </tr>
+    </table>
 }
 
 

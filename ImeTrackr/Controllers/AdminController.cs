@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using ImeTrackr.Models;
+using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 {
@@ -20,7 +21,21 @@ namespace ImeTrackr.Controllers
             MembershipUserCollection users = Membership.GetAllUsers();
             vm.Users = users;
 
+            String[] roles = Roles.GetAllRoles();
+            vm.Roles = roles;
             return View(vm);
+        }
+
+        public ActionResult AddRole(String roleName)
+        {
+            Roles.CreateRole(roleName);
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteRole(String roleName)
+        {
+            Roles.DeleteRole(roleName);
+            return RedirectToAction("Index");
         }
 
         //
@@ -60,11 +75,15 @@ namespace ImeTrackr.Controllers
         //
         // GET: /Admin/Edit/5
  
-        public ActionResult Edit(string userName)
+        public ActionResult Edit(string user)
         {
             AdminEditUser editModel = new AdminEditUser();
-            MembershipUser currentUser = Membership.GetUser(userName);
+            MembershipUser currentUser = Membership.GetUser(user);
             editModel.User = currentUser;
+            
+            editModel.UserName = currentUser.UserName;
+            editModel.Email = currentUser.Email;
+            editModel.Comment = currentUser.Comment;
 
             editModel.Roles = Roles.GetAllRoles();
             return View(editModel);
@@ -74,13 +93,13 @@ namespace ImeTrackr.Controllers
         // POST: /Admin/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(AdminEditUser user, FormCollection collection)
         {
             try
             {
                 // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
+
+                return View();
             }
             catch
             {
@@ -90,23 +109,23 @@ namespace ImeTrackr.Controllers
 
         //
         // GET: /Admin/Delete/5
- 
-        public ActionResult Delete()
+        public ActionResult Delete(String user)
         {
-            return View();
+            AdminEditUser vm = new AdminEditUser();
+            vm.User = Membership.GetUser(user);
+            return View("Delete", vm.User);
         }
 
         //
         // POST: /Admin/Delete/5
-
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(String user, FormCollection collection)
         {
             try
             {
                 // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
+                Membership.DeleteUser(user);
+                return RedirectToAction("Index", "Admin");
             }
             catch
             {

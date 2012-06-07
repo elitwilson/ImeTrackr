@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 {
-    [Authorize(Roles="Administrators")]
+    [BaseAuthorize(Roles="Administrators")]
     public class AdminController : Controller
     {
         //

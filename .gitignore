@@ -8,7 +8,6 @@
 *.csproj.FileListAbsolute.txt
 *.datasource
 bin/
-obj/
 build.force
 Thumbs.db
 !Lib/*.dll

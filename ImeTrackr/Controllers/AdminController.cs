@@ -74,18 +74,19 @@ namespace ImeTrackr.Controllers
         
         //
         // GET: /Admin/Edit/5
- 
+        [HttpGet]
         public ActionResult Edit(string user)
         {
             AdminEditUser editModel = new AdminEditUser();
             MembershipUser currentUser = Membership.GetUser(user);
-            editModel.User = currentUser;
             
+
+
             editModel.UserName = currentUser.UserName;
             editModel.Email = currentUser.Email;
             editModel.Comment = currentUser.Comment;
-
-            editModel.Roles = Roles.GetAllRoles();
+            editModel.SelectedRoleNames = Roles.GetRolesForUser(user);
+            
             return View(editModel);
         }
 
@@ -93,17 +94,35 @@ namespace ImeTrackr.Controllers
         // POST: /Admin/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(AdminEditUser user, FormCollection collection)
+        public ActionResult Edit(AdminEditUser model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
+                var user = Membership.GetUser(model.UserName);
+                user.Comment = model.Comment;
+                user.Email = model.Email;
+                var rolesForUser = Roles.GetRolesForUser(model.UserName);
 
-                return View();
+                if (rolesForUser != null && rolesForUser.Count() > 0)
+                {
+                    Roles.RemoveUserFromRoles(model.UserName, rolesForUser);
+                }
+                if (model.SelectedRoleNames != null)
+                {
+                    foreach (var role in model.SelectedRoleNames)
+                    {
+
+                        Roles.AddUserToRole(user.UserName, role);
+                    }
+                }
+
+                Membership.UpdateUser(user);
+
+                return RedirectToAction("Index");
             }
-            catch
+            else
             {
-                return View();
+                return View(model);
             }
         }
 
@@ -112,8 +131,7 @@ namespace ImeTrackr.Controllers
         public ActionResult Delete(String user)
         {
             AdminEditUser vm = new AdminEditUser();
-            vm.User = Membership.GetUser(user);
-            return View("Delete", vm.User);
+            return View("Delete");
         }
 
         //

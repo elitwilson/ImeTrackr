@@ -76,8 +76,6 @@ namespace ImeTrackr.Models
 
     public class AdminEditUser
     {
-        public MembershipUser User { get; set; }
-
         [Display(Name = "User Name")]
         public String UserName { get; set; }
         [Display(Name = "E-Mail")]
@@ -85,6 +83,14 @@ namespace ImeTrackr.Models
         [Display(Name = "Comments")]
         public string Comment { get; set; }
 
-        public String[] Roles { get; set; }
+        public string[] SelectedRoleNames { get; set; }
+        //public List<CheckBox> CheckBoxes { get; set; }
+
+        //public class CheckBox
+        //{
+        //    public int Id { get; set; }
+        //    public bool IsChecked { get; set; }
+        //}
+        
     }
 }

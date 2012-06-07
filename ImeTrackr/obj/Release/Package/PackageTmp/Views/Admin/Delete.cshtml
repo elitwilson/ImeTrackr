@@ -1,0 +1,22 @@
+﻿@model MembershipUser
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h4>Action can not be undone.</h4>
+<b>Are you sure you want to delete the following user?</b>
+
+@Html.DisplayFor(m => m.UserName)<br />
+@Html.DisplayFor(m => m.Email)<br />
+@Html.DisplayFor(m => m.CreationDate)<br />
+@Html.DisplayFor(m => m.Comment)
+
+@using (Html.BeginForm())
+{
+    <p>
+        <input type="submit" value="Delete" />
+    </p>
+}

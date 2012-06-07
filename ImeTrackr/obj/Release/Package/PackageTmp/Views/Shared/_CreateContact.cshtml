@@ -1,0 +1,96 @@
+﻿@model ImeTrackr.Models.Contact
+
+
+
+@using (Html.BeginForm("Create", "Contact", FormMethod.Post, new { @class="popupForm" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Contact</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Organization)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("OrganizationId", String.Empty)
+            @Html.ValidationMessageFor(model => model.OrganizationId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNumber)
+            @Html.ValidationMessageFor(model => model.PhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobTitle)
+            @Html.ValidationMessageFor(model => model.JobTitle)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Notes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Notes)
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+        
+    </fieldset>
+}
+
+<script type="text/javascript">
+    $('.popupForm').submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "@Url.Action("_CreateContact", "Evaluation")",
+            data: $(this).serialize(),
+            success: (function (response) {
+                var deserialized = $.parseJSON(response);
+                alert(response.LastName);
+                $('<option value="' + response.Id + '" selected="selected">' + response.LastName + ', ' + response.FirstName + '</option>').appendTo('#ContactId');
+//                $('#ContactId').html('');
+//                $.each(deserialized, function (k, v) {
+//                    $('<option value="' + v.Id + '">' + v.LastName + ', ' + v.FirstName + '</option>').appendTo('#ContactId');                
+//                });
+                $('.dialog').dialog('close');
+            }),
+            error: function(xhr){
+                alert('Something is fucked...');
+            }
+        });
+    });
+
+</script>

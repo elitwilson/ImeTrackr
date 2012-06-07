@@ -9,8 +9,7 @@ using ImeTrackr.Models;
 
 namespace ImeTrackr.Controllers
 { 
-    [Authorize]
-    public class TechController : Controller
+    public class TechController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
 

@@ -12,8 +12,7 @@ using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 { 
-    [Authorize]
-    public class PhoneCallController : Controller
+    public class PhoneCallController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
         

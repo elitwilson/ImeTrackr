@@ -10,8 +10,7 @@ using ImeTrackr.ViewModels;
 
 namespace ImeTrackr.Controllers
 {
-    [Authorize]
-    public class OrganizationController : Controller
+    public class OrganizationController : BaseController
     {
         
         private ImeTrackrContext db = new ImeTrackrContext();

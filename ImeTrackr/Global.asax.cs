@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Data.Entity;
@@ -34,7 +35,15 @@ namespace ImeTrackr
 
         protected void Application_Start()
         {
-            Database.SetInitializer<ImeTrackrContext>(new DbInitializer());
+            //Database.SetInitializer<ImeTrackrContext>(new DbInitializer());
+            if(!Roles.GetAllRoles().Contains("Administrators"))
+            {
+                Roles.CreateRole("Administrators");
+            }
+            if (!Roles.GetAllRoles().Contains("Users"))
+            {
+                Roles.CreateRole("Users");
+            }
             
             AreaRegistration.RegisterAllAreas();
 

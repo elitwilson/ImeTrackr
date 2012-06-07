@@ -9,8 +9,7 @@ using ImeTrackr.Models;
 
 namespace ImeTrackr.Controllers
 { 
-    [Authorize]
-    public class PlaintiffController : Controller
+    public class PlaintiffController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
 

@@ -13,13 +13,24 @@
         <tr>
             <th>User Name</th>
             <th>Email</th>
+            <th>Roles</th>
+            <th>Delete?</th>
         </tr>
     @foreach (MembershipUser item in Model.Users)
     {
         <tr>
             <td>@Html.ActionLink(item.UserName, "Edit", new { user = item })</td>
             <td>@Html.DisplayFor(modelItem => item.Email)</td>
-            <td>@Html.ActionLink("Delete", "Delete", new { user = item.UserName })</td>
+            <td>
+            @foreach (var role in Roles.GetRolesForUser(item.UserName))
+            {
+                @role@:  
+            }
+            </td>
+            <td>
+            
+                @Html.ActionLink("Delete User", "Delete", new { user = item.UserName })
+            </td>
         </tr>
     }
     </table>    
@@ -38,12 +49,21 @@ else
         <tr>
             <th>Role Name</th>
         </tr>
-    @foreach (var item in Model.Roles)
+    @foreach (var role in Model.Roles)
     {
 
             <tr>
-                <td>@Html.Raw(item)</td>
-                <td>@Html.ActionLink("Delete", "DeleteRole", new { roleName = item })</td>
+                <td>@Html.Raw(role)</td>
+                <td>
+                @if (role == "Administrators" || role == "Users")
+                {
+                    @:Can't Delete: core role
+                }
+                else
+                {
+                    @Html.ActionLink("Delete", "DeleteRole", new { roleName = role })
+                }
+                </td>
             </tr>
         
     }

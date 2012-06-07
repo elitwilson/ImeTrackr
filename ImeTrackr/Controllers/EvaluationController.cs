@@ -12,8 +12,7 @@ using Newtonsoft.Json;
 
 namespace ImeTrackr.Controllers
 { 
-    [Authorize]
-    public class EvaluationController : Controller
+    public class EvaluationController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
 

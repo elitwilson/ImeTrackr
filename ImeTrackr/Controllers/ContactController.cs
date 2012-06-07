@@ -10,8 +10,7 @@ using ImeTrackr.Models;
 
 namespace ImeTrackr.Controllers
 { 
-    [Authorize]
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
 

@@ -11,8 +11,7 @@ using ImeTrackr.Models;
 
 namespace ImeTrackr.Controllers
 {
-    [Authorize]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         ImeTrackrContext db = new ImeTrackrContext();
 

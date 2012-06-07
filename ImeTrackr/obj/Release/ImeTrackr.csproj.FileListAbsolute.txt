@@ -8,3 +8,14 @@ D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ImeTrac
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.dll
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.pdb
 D:\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.xml
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\ImeTrackr.dll
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\ImeTrackr.pdb
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\EntityFramework.dll
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.dll
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\System.Data.SqlServerCe.dll
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\EntityFramework.xml
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.pdb
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\bin\Newtonsoft.Json.xml
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ResolveAssemblyReference.cache
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ImeTrackr.dll
+C:\Users\McArlo\Documents\Visual Studio 2010\Projects\ImeTrackr\ImeTrackr\obj\Release\ImeTrackr.pdb

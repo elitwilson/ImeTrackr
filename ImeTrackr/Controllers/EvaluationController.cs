@@ -55,7 +55,7 @@ namespace ImeTrackr.Controllers
             }
 
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
-            return Json("Success3");
+            return Json("blerrggg");
         }
 
         public ViewResult Details(int id)

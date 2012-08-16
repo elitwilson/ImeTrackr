@@ -233,8 +233,25 @@ table th {
     border: solid 1px #e8eef4;
 }
 
+/* PhoneCall
+----------------------------------------------------------*/
+#matches-dialog {
+    margin: 5px, 5px, 5px, 5px;
+}
+#contact-matches {
+    
+}
+
+#plaintiff-matches {
+    
+}
 /* MISC  
 ----------------------------------------------------------*/
+.hidden {
+    visibility: hidden;
+}
+
+
 .clear {
     clear: both;
 }

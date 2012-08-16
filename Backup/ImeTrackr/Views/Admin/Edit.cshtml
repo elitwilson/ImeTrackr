@@ -1,0 +1,56 @@
+﻿@model ImeTrackr.Models.AdminEditUser
+
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Edit</h2>
+<div id="EditForm">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Edit User</legend>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Email)
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Comment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(m => m.Comment)
+            @Html.ValidationMessageFor(m => m.Comment)
+        </div>
+
+    @foreach (var role in Roles.GetAllRoles())
+    {
+        <input type="checkbox" name="selectedRoleNames" value="@role"
+        @if(Model.SelectedRoleNames.Any(x => x == role))
+            {
+                @:checked="checked"
+            }
+            />
+        <label>
+            @role
+        </label>
+        <br />
+    }
+    <p>
+        <input type="submit" value="Submit" />
+    </p>    
+    </fieldset>
+}
+</div>
+
+
+

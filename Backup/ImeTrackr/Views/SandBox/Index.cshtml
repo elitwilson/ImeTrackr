@@ -1,0 +1,41 @@
+﻿<script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.min.js")" type="text/javascript"></script>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="test">Index</div>
+
+<form action="">
+    <select id="dropDown">
+        <option>Test1</option>
+    </select>
+</form>
+
+<script type="text/javascript">
+    var samplePlaintiff = {
+        Id: 20,
+        FirstName: "Arlo",
+        LastName: "Wilkinson"
+    };
+
+    var jsonSerialized = JSON.stringify(samplePlaintiff);
+
+    $.ajax({
+        type: "POST",
+        url: "/SandBox/JsonTest",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: jsonSerialized,
+        success: function (result) {
+            console.log(result); //log to the console to see whether it worked
+        },
+        error: function (error) {
+            alert("Error: " + error.responseText);
+        }
+    }); 
+</script>
+

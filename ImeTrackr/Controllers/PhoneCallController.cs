@@ -88,34 +88,62 @@ namespace ImeTrackr.Controllers
         public ActionResult Create()
         {
             PhoneCallViewModel vm = new PhoneCallViewModel();
-
-            //I know I am doing this inefficiently. Don't need a list of entity models in VM
             vm.Date = DateTime.Now.Date;
-            vm.Plaintiffs = db.Plaintiffs.OrderBy(p => p.LastName);
-            vm.Organizations = db.Organizations.OrderBy(o => o.Name);
-            vm.Contacts = db.Contacts.OrderBy(c => c.LastName);
+            
+            //I know I am doing this inefficiently. Don't need a list of entity models in VM
+            //vm.Plaintiffs = db.Plaintiffs.OrderBy(p => p.LastName);
+            //vm.Organizations = db.Organizations.OrderBy(o => o.Name);
+            //vm.Contacts = db.Contacts.OrderBy(c => c.LastName);
             
             return View(vm);
         } 
 
         //
         // POST: /PhoneCall/Create
-
         [HttpPost]
-        public ActionResult Create(PhoneCall phonecall)
+        public string Create(PhoneCallViewModel phoneCall)
         {
             if (ModelState.IsValid)
             {
+                var possibleContacts = from item in db.Contacts
+                                       where item.FirstName.ToLower().StartsWith(phoneCall.ContactFirstName) ||
+                                       item.LastName.ToLower().StartsWith(phoneCall.ContactLastName)
+                                       orderby item.LastName
+                                       select new { item.Id, item.FirstName, item.LastName };
 
+                foreach (var item in possibleContacts)
+                {
+                    PhoneCallViewModel.ContactMatch cMatch = new PhoneCallViewModel.ContactMatch();
+                    cMatch.Id = item.Id;
+                    cMatch.FullName = item.FirstName + " " + item.LastName;
+                    phoneCall.ContactMatches.Add(cMatch);
+                }
+                
+                var possiblePlaintiffs = from item in db.Plaintiffs
+                                         where item.FirstName.ToLower().StartsWith(phoneCall.PlaintiffFirstName) ||
+                                         item.LastName.ToLower().StartsWith(phoneCall.PlaintiffLastName)
+                                         orderby item.LastName
+                                         select new { item.Id, item.FirstName, item.LastName };
 
-                db.PhoneCalls.Add(phonecall);
-                db.SaveChanges();
-                return RedirectToAction("Index");  
+                foreach (var item in possiblePlaintiffs)
+                {
+                    PhoneCallViewModel.PlaintiffMatch pMatch = new PhoneCallViewModel.PlaintiffMatch();
+                    pMatch.Id = item.Id;
+                    pMatch.FullName = item.FirstName + " " + item.LastName;
+                    phoneCall.PlaintiffMatches.Add(pMatch);
+                }
+                var result = JsonConvert.SerializeObject(phoneCall);
+
+                return result;  
             }
 
-            //ViewBag.PlaintiffId = new SelectList(db.Plaintiffs, "Id", "FullName", phonecall.PlaintiffId);
-            //ViewBag.ContactId = new SelectList(db.Contacts, "Id", "FullName", phonecall.ContactId);
-            return View(phonecall);
+            return "There was a problem";
+        }
+
+        [HttpPost]
+        public string MatchDialogPost()
+        {
+            return null;
         }
 
         [HttpPost]
@@ -132,7 +160,21 @@ namespace ImeTrackr.Controllers
             var result = JsonConvert.SerializeObject(query);
 
             return Json(result);
+        }
 
+        [HttpPost]
+        public string GetContactsAsJson()
+        {
+            var contacts = from c in db.Contacts
+                        select new 
+                        {
+                            label = c.FirstName + " " + c.LastName,
+                            value = c.Id
+                        };
+
+            var result = JsonConvert.SerializeObject(contacts);
+
+            return result;
         }
         
         //

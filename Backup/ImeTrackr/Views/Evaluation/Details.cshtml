@@ -1,0 +1,65 @@
+﻿@model ImeTrackr.ViewModels.EvaluationViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Evaluation</legend>
+
+    <div class="display-label">Plaintiff</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Plaintiff.FullName)
+    </div>
+
+    <div class="display-label">Organization</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.Organization.Name)
+    </div>
+
+    <div class="display-label">Contact</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Contact.FullName)
+    </div>
+
+    <div class="display-label">CaseNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.CaseNumber)
+    </div>
+
+    <div class="display-label">CaseName</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.CaseName)
+    </div>
+
+    <div class="display-label">DayOne</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.DayOne)
+    </div>
+
+    <div class="display-label">DayTwo</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.DayTwo)
+    </div>
+    
+    <div class="display-label">Tech</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.Tech.Initials)
+    </div>
+
+    <div class="display-label">Notes</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.Notes)
+    </div>
+
+    <div class="display-label">IsComplete</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Evaluation.IsComplete)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Evaluation.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

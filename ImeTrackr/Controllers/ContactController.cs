@@ -24,6 +24,38 @@ namespace ImeTrackr.Controllers
         }
 
         //
+        //Trying to make this component reusable, but not functioning yet. Unsure of how to do.
+        //Contact Dialog Box
+        public ActionResult _CreateContact()
+        {
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return PartialView();
+        }
+
+        //
+        // POST
+        [HttpPost]
+        public JsonResult _CreateContact(Contact contact)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Request.IsAjaxRequest())
+                {
+                    db.Contacts.Add(contact);
+                    db.SaveChanges();
+
+                    return Json(contact, JsonRequestBehavior.AllowGet);
+                }
+                db.Contacts.Add(contact);
+                db.SaveChanges();
+                return Json(contact, JsonRequestBehavior.AllowGet);
+            }
+
+            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
+            return Json("blerrggg");
+        }
+
+        //
         // GET: /Contact/Details/5
 
         public ViewResult Details(int id)
@@ -62,26 +94,6 @@ namespace ImeTrackr.Controllers
 
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name", contact.OrganizationId);
             return View(contact);
-        }
-
-        public ActionResult _CreateContact()
-        {
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
-            return PartialView();
-        }
-
-        [HttpPost]
-        public ActionResult _CreateContact(Contact contact)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Contacts.Add(contact);
-                db.SaveChanges();
-                return View("Evaluation");
-            }
-
-            ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
-            return View();
         }
 
         public ActionResult CreatePartial()

@@ -27,14 +27,14 @@ namespace ImeTrackr.ViewModels
         public class ContactMatch
         {
 
-            public int Id { get; set; }
+            public int ContactId { get; set; }
             public string FullName { get; set; }
         }
 
 
         public class PlaintiffMatch
         {
-            public int Id { get; set; }
+            public int PlaintiffId { get; set; }
             public string FullName { get; set; }
         }
 

@@ -27,8 +27,7 @@ namespace ImeTrackr.Controllers
             return View(evaluations.ToList());
         }
 
-        //
-        // GET: /Evaluation/Details/5
+
         public ActionResult _CreateContact()
         {
             ViewBag.OrganizationId = new SelectList(db.Organizations, "Id", "Name");
@@ -58,6 +57,8 @@ namespace ImeTrackr.Controllers
             return Json("blerrggg");
         }
 
+        //
+        // GET: /Evaluation/Details/5
         public ViewResult Details(int id)
         {
             EvaluationViewModel vm = new EvaluationViewModel();

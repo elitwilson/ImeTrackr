@@ -15,7 +15,7 @@ namespace ImeTrackr.Controllers
     public class PhoneCallController : BaseController
     {
         private ImeTrackrContext db = new ImeTrackrContext();
-        
+        private PhoneCall phoneCallFinal = new PhoneCall();
         //
         // GET: /PhoneCall/
 
@@ -114,7 +114,7 @@ namespace ImeTrackr.Controllers
                 foreach (var item in possibleContacts)
                 {
                     PhoneCallViewModel.ContactMatch cMatch = new PhoneCallViewModel.ContactMatch();
-                    cMatch.Id = item.Id;
+                    cMatch.ContactId = item.Id;
                     cMatch.FullName = item.FirstName + " " + item.LastName;
                     phoneCall.ContactMatches.Add(cMatch);
                 }
@@ -128,11 +128,16 @@ namespace ImeTrackr.Controllers
                 foreach (var item in possiblePlaintiffs)
                 {
                     PhoneCallViewModel.PlaintiffMatch pMatch = new PhoneCallViewModel.PlaintiffMatch();
-                    pMatch.Id = item.Id;
+                    pMatch.PlaintiffId = item.Id;
                     pMatch.FullName = item.FirstName + " " + item.LastName;
                     phoneCall.PlaintiffMatches.Add(pMatch);
                 }
                 var result = JsonConvert.SerializeObject(phoneCall);
+
+                //   There may be a better way to do this...
+                //I am storing result of form in private PhoneCall variable defined at start of controller.
+                phoneCallFinal.Message = phoneCall.Message;
+                phoneCallFinal.Date = phoneCall.Date;
 
                 return result;  
             }
@@ -141,7 +146,22 @@ namespace ImeTrackr.Controllers
         }
 
         [HttpPost]
-        public string MatchDialogPost()
+        public ActionResult AddPhoneCall(int ContactId, int PlaintiffId)
+        {
+            PhoneCall phoneCall = new PhoneCall();
+
+            Contact contact = db.Contacts.Find(ContactId);
+            Plaintiff plaintiff = db.Plaintiffs.Find(PlaintiffId);
+
+            phoneCall.Contact = contact;
+            phoneCall.Plaintiff = plaintiff;
+
+            //Add to Database
+            //db.PhoneCalls.Add(phoneCallFinal);
+            return null;
+        }
+
+        public ActionResult AddPhoneCall(PhoneCallViewModel vm)
         {
             return null;
         }
@@ -150,7 +170,6 @@ namespace ImeTrackr.Controllers
         public ActionResult PopulateContacts(int id)
         {
             JavaScriptSerializer serializer = new JavaScriptSerializer();
-
             var query = from obj in db.Contacts
                         where obj.OrganizationId == id
                         select new { obj.Id, obj.LastName, obj.FirstName };

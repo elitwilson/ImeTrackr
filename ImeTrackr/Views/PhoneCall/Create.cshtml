@@ -13,6 +13,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var selectedContact;
+        var selectedPlaintiff;
+
         $("#submitForm").click(function (e) {
             e.preventDefault();
 
@@ -34,7 +37,7 @@
                     $.each(json.ContactMatches, function (key, value) {
                         if (key != 0) {
                             //add string to contactMatches array, to be appended to appropriate <div> after loop code
-                            contactMatches.push('<ul><a href="#" class="contact-matches" name="' + value.Id + '">' + value.FullName + '</a></ul>');
+                            contactMatches.push('<input type="radio" name="ContactId" value="' + value.ContactId + '" />' + value.FullName + '<br />');
                         }
                     });
                     $('#contact-matches').empty();
@@ -44,7 +47,7 @@
                     $.each(json.PlaintiffMatches, function (key, value) {
                         if (key != 0) {
                             //add string to plaintiffMatches array, to be appended to appropriate <div> after loop code
-                            plaintiffMatches.push('<ul><a href="#" class="plaintiff-matches" name="' + value.Id + '">' + value.FullName + '</a></ul>');
+                            plaintiffMatches.push('<input type="radio" name="PlaintiffId" value="' + value.PlaintiffId + '" />' + value.FullName + '<br />');
                         }
                     });
                     $('#plaintiff-matches').empty();
@@ -62,22 +65,36 @@
             });
         });
 
-        $('.contact-matches plaintiff-matches').click(function (event) {
+        $('#submitMatches').click(function (event) {
             event.preventDefault();
+
             $.ajax({
-                url: "/PhoneCall/MatchDialogPost",
+                url: "/PhoneCall/AddPhoneCall",
                 type: "POST",
-                data: ""
+                data: $("#matches-form").serialize()
             });
         });
     });
 </script>
+
 <div id="matches-dialog" class="hidden">
-    Possible Plaintiff Matches:
-    <div id="plaintiff-matches"></div>
-    Possible Contact Matches:
-    <div id="contact-matches"></div>
+@using (Html.BeginForm("AddPhoneCall", "PhoneCall", FormMethod.Post, new {id = "matches-form" }))
+    {
+        <fieldset>
+            <legend>Matches</legend>
+            <p />
+            Possible Plaintiff Matches:
+            <div id="plaintiff-matches"></div>
+            
+            <p />
+            Possible Contact Matches:
+            <div id="contact-matches"></div>
+            
+            <p><input id="submitMatches" type="submit" value="Submit" /></p>
+        </fieldset>
+    }
 </div>
+
 
 @using (Html.BeginForm("Create", "PhoneCall", FormMethod.Post, new { id = "form" }))
 {
@@ -95,12 +112,14 @@
         <input type="text" name="PlaintiffFirstName" />
         Last: 
         <input type="text" name="PlaintiffLastName" />
+        | <a href="#">New Plaintiff</a>
         <p />
         <b>Contact</b> <br />
         First: 
         <input type="text" name="ContactFirstName" />
         Last: 
         <input type="text" name="ContactLastName" />
+            | @Html.ActionLink("New Contact", "_CreateContact", "Evaluation", null, new {id = "createContact" })
         <p />
         Message: <br />
         <p>
@@ -111,7 +130,7 @@
         </p>
     </fieldset>
 }
-
+<div class="dialog" id="ContactPartial"></div>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
